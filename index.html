@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PTO Manager</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+<header class="flex justify-between items-center px-6 py-4 bg-gray-800 text-white">
+  <h1 class="text-xl font-semibold">PTO Manager</h1>
+  <span class="text-sm">Welcome, Employee</span>
+</header>
+
+<div class="flex min-h-[calc(100vh-64px)] flex-col md:flex-row">
+
+  <!-- Sidebar -->
+  <aside class="w-full md:w-56 bg-gray-900 text-white p-5">
+    <ul class="space-y-2">
+      <li class="px-3 py-2 rounded bg-gray-700">Dashboard</li>
+      <li class="px-3 py-2 rounded hover:bg-gray-700">Leave Management</li>
+      <li class="px-3 py-2 rounded hover:bg-gray-700">Inventory Management</li>
+    </ul>
+  </aside>
+
+  <!-- Main -->
+  <main class="flex-1 p-6 space-y-12">
+
+    <!-- LEAVE MANAGEMENT -->
+    <section>
+      <h2 class="text-lg font-semibold mb-4">Leave Management</h2>
+
+      <!-- Filter -->
+      <select onchange="manager.filterLeaves(this.value)"
+        class="border p-2 rounded mb-4">
+        <option value="All">All</option>
+        <option value="Pending">Pending</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+
+      <!-- Leave Form -->
+      <div class="bg-white p-5 rounded shadow mb-4 flex gap-3 flex-wrap">
+        <select id="leaveType" class="border p-2 rounded">
+          <option value="">Select Leave</option>
+          <option>Casual</option>
+          <option>Sick</option>
+          <option>Paid</option>
+        </select>
+
+        <input id="leaveDays" type="number" class="border p-2 rounded w-32" placeholder="Days"/>
+
+        <button onclick="manager.addLeave()" class="bg-gray-800 text-white px-4 py-2 rounded">
+          Apply Leave
+        </button>
+      </div>
+
+      <ul id="leaveList" class="space-y-2"></ul>
+    </section>
+
+    <!-- INVENTORY MANAGEMENT -->
+    <section>
+      <h2 class="text-lg font-semibold mb-4">Inventory Management</h2>
+
+      <!-- Filter -->
+      <select onchange="manager.filterInventory(this.value)"
+        class="border p-2 rounded mb-4">
+        <option value="All">All</option>
+        <option value="Available">Available</option>
+        <option value="Assigned">Assigned</option>
+      </select>
+
+      <!-- Inventory Form -->
+      <div class="bg-white p-5 rounded shadow mb-4 flex gap-3 flex-wrap">
+        <select id="assetName" class="border p-2 rounded">
+          <option value="">Select Asset</option>
+          <option>Laptop</option>
+          <option>Monitor</option>
+          <option>Accessories</option>
+        </select>
+
+        <button onclick="manager.addInventory()" class="bg-gray-800 text-white px-4 py-2 rounded">
+          Add Asset
+        </button>
+      </div>
+
+      <ul id="inventoryList" class="space-y-2"></ul>
+    </section>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
